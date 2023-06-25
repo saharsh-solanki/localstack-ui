@@ -1,0 +1,62 @@
+version: '3'
+services:
+  localstack:
+    image: localstack/localstack
+    environment:
+      - SERVICES=s3,dynamodb
+      - DEBUG=1
+      - LOCALSTACK_USE_SSL=false
+      - AWS_ACCESS_KEY_ID=dummy-access-key
+      - AWS_SECRET_ACCESS_KEY=dummy-secret-key
+    ports:
+      - '4566:4566'
+    networks:
+      - network_all
+
+  web:
+    build:
+      context: ./localstack-ui
+      dockerfile: Dockerfile
+    environment:
+      - PORT=4000
+      - TO_EXPOSE_PORT=5555
+    ports:
+      - '5555:4000'
+    networks:
+      - network_all
+
+  backend:
+    build:
+        context: ./localstack_backend
+        dockerfile: Dockerfile
+    environment:
+      - AWS_ACCESS_KEY_ID=dummy-access-key
+      - AWS_SECRET_ACCESS_KEY=dummy-secret-key
+      - AWS_S3_ENDPOINT_URL=http://localstack:4566
+      - DEVLOPMENT_TYPE=prod
+      - DATABASE_NAME=backend_localstack
+      - DATABASE_HOST=database
+      - PORT=5556
+      - TO_EXPOSE_PORT=5556
+    ports:
+      - '5556:5556'
+    depends_on: 
+      - database
+    networks:
+      - network_all
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: backend_localstack
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - network_all
+
+volumes:
+  dbdata:
+
+networks:
+  network_all:

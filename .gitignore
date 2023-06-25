@@ -1,0 +1,26 @@
+/localstack_backend/venv/*
+*.pyc
+# UI
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/localstack-ui/node_modules/*
+/localstack-ui/.pnp
+/localstack-ui/.pnp.js
+
+# testing
+/localstack-ui/coverage
+
+# production
+/localstack-ui/build
+
+# misc
+/localstack-ui/.DS_Store
+/localstack-ui/.env.local
+/localstack-ui/.env.development.local
+/localstack-ui/.env.test.local
+/localstack-ui/.env.production.local
+
+/localstack-ui/npm-debug.log*
+/localstack-ui/yarn-debug.log*
+/localstack-ui/yarn-error.log*
