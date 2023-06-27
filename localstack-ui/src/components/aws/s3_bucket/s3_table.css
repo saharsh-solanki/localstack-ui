@@ -1,0 +1,21 @@
+.main-table {
+  background: var(--root-color);
+}
+
+.s3-list-table {
+  font-size: 13px;
+}
+
+.s3-header-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow properties */
+  border-collapse: collapse;
+}
+
+.table {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow properties */
+  border-collapse: collapse;
+}
