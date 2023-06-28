@@ -26,7 +26,11 @@ export async function runApiBase(method, url, data, header) {
   var config = {
     method: method,
     url: url,
-    headers: header,
+    headers: {
+      ...header,
+      // "Access-Control-Allow-Origin":"*",
+      // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    },
   };
 
   if (method === 'get') {

@@ -10,25 +10,12 @@ function S3BucketListTable() {
     fetchS3Bucekts();
   }, []);
 
-  const testData = [
-    {
-      Name: 'Test Bucket 1',
-      AwsRegion: 'US-EAST-1',
-      Access: 'Public',
-      CreationDate: '02-02-2022',
-    },
-    {
-      Name: 'Test Bucket 2',
-      AwsRegion: 'US-EAST-2',
-      Access: 'Private',
-      CreationDate: '02-02-2022',
-    },
-  ];
-
   const fetchS3Bucekts = async () => {
     setIsLoading(true);
-    const fetchS3BucketResult = await FetchS3BucketApi();
-    setS3BucketData(fetchS3BucketResult);
+    const response = await FetchS3BucketApi();
+    if (response) {
+      setS3BucketData(response['data']['Buckets']);
+    }
     setIsLoading(false);
   };
 
@@ -36,7 +23,7 @@ function S3BucketListTable() {
     <div className="main-table margin-right-10 my-4">
       <div className="s3-header-detail bg-light">
         <div className="bucket-header">
-          <b>Buckets</b> ({testData.length})
+          <b>Buckets</b> ({s3BucketData.length})
         </div>
         <div>
           <button className="btn btn-sm  text-sm btn-warning">
@@ -56,25 +43,22 @@ function S3BucketListTable() {
         </thead>
         <tbody>
           {isLoading ? (
-            <th scope="row">
-              <tr>Loading</tr>
-            </th>
+            <tr scope="row">
+              <td>Loading</td>
+            </tr>
           ) : (
-            isLoading &&
-            s3BucketData &&
-            s3BucketData?.map((bucket) => {
+            s3BucketData.length > 0 &&
+            s3BucketData?.map((bucket, index) => {
               return (
-                <>
-                  <tr>
-                    <th scope="row">
-                      <input type="radio"></input>
-                    </th>
-                    <td>{bucket.Name}</td>
-                    {/* <td>{bucket.AwsRegion}</td>
-                  <td>{bucket.Access}</td>
-                  <td>{bucket.CreationDate}</td> */}
-                  </tr>
-                </>
+                <tr key={'tr-' + index}>
+                  <th scope="row">
+                    <input type="radio" key={'input-' + index}></input>
+                  </th>
+                  <td>{bucket.Name}</td>
+                  <td>{bucket?.AwsRegion}</td>
+                  <td>{bucket?.Access}</td>
+                  <td>{bucket.CreationDate}</td>
+                </tr>
               );
             })
           )}
