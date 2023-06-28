@@ -1,6 +1,15 @@
+import { useEffect, useState } from 'react';
+import { FetchS3BucketApi } from '../../../apis/aws/s3/fetch_buckets';
 import './s3_table.css';
 
 function S3BucketListTable() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [s3BucketData, setS3BucketData] = useState([]);
+
+  useEffect(() => {
+    fetchS3Bucekts();
+  }, []);
+
   const testData = [
     {
       Name: 'Test Bucket 1',
@@ -16,6 +25,13 @@ function S3BucketListTable() {
     },
   ];
 
+  const fetchS3Bucekts = async () => {
+    setIsLoading(true);
+    const fetchS3BucketResult = await FetchS3BucketApi();
+    setS3BucketData(fetchS3BucketResult);
+    setIsLoading(false);
+  };
+
   return (
     <div className="main-table margin-right-10 my-4">
       <div className="s3-header-detail bg-light">
@@ -28,8 +44,8 @@ function S3BucketListTable() {
           </button>
         </div>
       </div>
-      <table class="table s3-list-table">
-        <thead class="thead-light">
+      <table className="table s3-list-table">
+        <thead className="thead-light">
           <tr>
             <th scope="col"></th>
             <th scope="col">Name</th>
@@ -39,21 +55,29 @@ function S3BucketListTable() {
           </tr>
         </thead>
         <tbody>
-          {testData?.map((bucket) => {
-            return (
-              <>
-                <tr>
-                  <th scope="row">
-                    <input type="radio"></input>
-                  </th>
-                  <td>{bucket.Name}</td>
-                  <td>{bucket.AwsRegion}</td>
+          {isLoading ? (
+            <th scope="row">
+              <tr>Loading</tr>
+            </th>
+          ) : (
+            isLoading &&
+            s3BucketData &&
+            s3BucketData?.map((bucket) => {
+              return (
+                <>
+                  <tr>
+                    <th scope="row">
+                      <input type="radio"></input>
+                    </th>
+                    <td>{bucket.Name}</td>
+                    {/* <td>{bucket.AwsRegion}</td>
                   <td>{bucket.Access}</td>
-                  <td>{bucket.CreationDate}</td>
-                </tr>
-              </>
-            );
-          })}
+                  <td>{bucket.CreationDate}</td> */}
+                  </tr>
+                </>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>

@@ -6,31 +6,31 @@ function Header() {
       <header id="container">
         <div id="nav-bar">
           <div id="nav-belt">
-            <div class="nav-left">
+            <div className="nav-left">
               <div id="nav-logo">
-                <a href="/">LOGO</a>
+                <button>LOGO</button>
               </div>
             </div>
-            <div class="nav-fill">
+            <div className="nav-fill">
               <div id="nav-search">
                 <form id="nav-search-bar-form">
-                  <div class="nav-left">
-                    <a href="">ALL</a>
+                  <div className="nav-left">
+                    <button href="">ALL</button>
                   </div>
-                  <div class="nav-fill">
+                  <div className="nav-fill">
                     <input type="text" />
                   </div>
-                  <div class="nav-right">
+                  <div className="nav-right">
                     <button type="submit">Search</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div class="nav-right">
+            <div className="nav-right">
               <div id="nav-tools">
-                <a href="/">Language</a>
-                <a href="/">Log in</a>
-                <a href="/">Cart</a>
+                <button>Language</button>
+                <button>Log in</button>
+                <button>Cart</button>
               </div>
             </div>
           </div>
