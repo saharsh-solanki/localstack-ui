@@ -45,6 +45,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://localhost:5555",
 ]
 
 ROOT_URLCONF = 'localstack_backend.urls'

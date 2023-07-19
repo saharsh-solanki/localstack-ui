@@ -7,7 +7,7 @@ endpoint_url = 'http://localhost:4566'
 s3_client = boto3.client('s3', endpoint_url=endpoint_url)
 
 # Define the bucket name
-bucket_name = 'my-bucketsssss'
+bucket_name = 'my-bucketss'
 
 # Create the bucket
 s3_client.create_bucket(Bucket=bucket_name)

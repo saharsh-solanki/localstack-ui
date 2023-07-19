@@ -20,7 +20,7 @@ services:
     environment:
       - PORT=4000
       - TO_EXPOSE_PORT=5555
-      - S3_ENDPOINT=5556
+      - S3_ENDPOINT=http://localhost:5556
     ports:
       - '5555:4000'
     networks:
