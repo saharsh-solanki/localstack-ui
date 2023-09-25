@@ -4,10 +4,10 @@ import json
 endpoint_url = 'http://localhost:4566'
 
 # Create an S3 client with the local endpoint
-s3_client = boto3.client('s3', endpoint_url=endpoint_url)
+s3_client = boto3.client('s3', endpoint_url=endpoint_url,aws_access_key_id='dummy-access-key', aws_secret_access_key='dummy-secret-key')
 
 # Define the bucket name
-bucket_name = 'my-bucketss'
+bucket_name = 'my-bucketssghgh'
 
 # Create the bucket
 s3_client.create_bucket(Bucket=bucket_name)
