@@ -82,7 +82,6 @@ export async function runApi(method, url, data, header) {
   const Result = await runApiBase(method, url, data, header);
   if (Result?.statusCode === 4000) {
     console.log('Server Down');
-    //   ErrorToast("Server down please try after some time ");
   }
   return Result;
 }

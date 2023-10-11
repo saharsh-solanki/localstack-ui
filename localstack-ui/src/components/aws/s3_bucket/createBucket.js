@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
-import { FetchS3BucketApi } from '../../../apis/aws/s3/fetch_buckets';
 import './s3_table.css';
 
 /**
  *
  * @param {*} props
  */
-export function CommonBoxWithHeader({ headerTitle, bodyComponent }) {
+export function CommonBoxWithHeader(props) {
+  const { headerTitle } = props;
   return (
-    <div className="d-flex flex-row">
-      <div className="common-create-bucket-header">headerTitle</div>
+    <div className="d-flex flex-row common-create-bucket-container">
+      <div className="common-create-bucket-header">
+        {headerTitle}
+      </div>
       <div>
-        <bodyComponent ></bodyComponent>
+        
       </div>
     </div>
   );
 }
 
 function S3CreateBucket() {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   //   const [s3BucketData, setS3BucketData] = useState([]);
 
   //   useEffect(() => {
@@ -33,14 +34,13 @@ function S3CreateBucket() {
   //     }
   //     setIsLoading(false);
   //   }
-  const GenerateInformation = () => {
-
-  }
 
   return (
-    <div className="">
-        <CommonBoxWithHeader headerTitle="General Information" bodyComponent></CommonBoxWithHeader>
-    </div>
+    <>
+        <CommonBoxWithHeader headerTitle="General Information">
+          
+        </CommonBoxWithHeader>
+    </>
   );
 }
 

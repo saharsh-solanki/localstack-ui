@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FetchS3BucketApi } from '../../../apis/aws/s3/fetch_buckets';
 import './s3_table.css';
+import { useNavigate } from 'react-router-dom';
 
 function S3BucketListTable() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [s3BucketData, setS3BucketData] = useState([]);
 
@@ -23,10 +25,15 @@ function S3BucketListTable() {
     <div className="main-table margin-right-10 my-4">
       <div className="s3-header-detail bg-light">
         <div className="bucket-header">
-          <b>Buckets</b> ({s3BucketData.length})
+          <b>Buckets</b> ({s3BucketData?.length})
         </div>
         <div>
-          <button className="btn btn-sm  text-sm btn-warning">
+          <button
+            onClick={() => {
+              navigate('/create/s3/buckets');
+            }}
+            className="btn btn-sm  text-sm btn-warning"
+          >
             Create bucket
           </button>
         </div>
@@ -43,7 +50,7 @@ function S3BucketListTable() {
         </thead>
         <tbody>
           {isLoading ? (
-            <tr scope="row">
+            <tr >
               <td>Loading</td>
             </tr>
           ) : (
