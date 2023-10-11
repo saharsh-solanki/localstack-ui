@@ -24,6 +24,15 @@ make setup-frontend
 ```
 make setup-backend
 ```
+## View Project
+* Front End will be available on this URL 
+```
+http://localhost:5555/
+```
+* Back End will be available on this URL 
+```
+http://localhost:5556/
+```
 
 ## Starting developement 
 * Formating react js 
