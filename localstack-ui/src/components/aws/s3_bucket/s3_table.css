@@ -19,3 +19,112 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow properties */
   border-collapse: collapse;
 }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+html {
+  background: #f2f3f3 !important;
+}
+
+.bg-same {
+  background: #f2f3f3;
+}
+
+.header {
+  background-color: black; /* Set header color to black */
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.section-header {
+  font-size: 24px;
+  color: #007bff;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button.btn-primary {
+  background-color: rgb(79, 70, 230);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button.btn-secondary {
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.small-text {
+  font-size: 14px;
+  color: #999;
+}
+
+.blue-link {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.link-icon::before {
+  content: "\25B6"; /* Right arrow character */
+  margin-left: 5px;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; /* Add margin for spacing */
+}
+
+.button-container button {
+  margin-left: 10px; /* Add spacing between the buttons */
+}
