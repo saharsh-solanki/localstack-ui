@@ -14,6 +14,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow properties */
   border-collapse: collapse;
 }
+.content-center {
+  justify-content: center;
+  align-items: center;
+}
 
 .table {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow properties */
@@ -22,8 +26,6 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #f2f3f3;
-  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;

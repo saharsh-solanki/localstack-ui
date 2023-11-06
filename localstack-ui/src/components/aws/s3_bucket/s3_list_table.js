@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FetchS3BucketApi } from '../../../apis/aws/s3/fetch_buckets';
+import { fetchS3BucketApi } from '../../../apis/aws/s3/s3';
 import './s3_table.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ function S3BucketListTable() {
 
   const fetchS3Bucekts = async () => {
     setIsLoading(true);
-    const response = await FetchS3BucketApi();
+    const response = await fetchS3BucketApi();
     if (response) {
       setS3BucketData(response['data']['Buckets']);
     }

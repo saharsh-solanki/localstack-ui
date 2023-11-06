@@ -6,9 +6,8 @@ function IndexPage() {
   return (
     <div>
       <Header></Header>
-      <div className="row root-bg">
-        <div className="col-lg-2"></div>
-        <div className="col-lg-10">
+      <div className="">
+        <div className="main-container-list-s3-table align-items-center ">
           <S3BucketAccountSnapShot></S3BucketAccountSnapShot>
           <S3BucketListTable></S3BucketListTable>
         </div>

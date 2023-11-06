@@ -1,7 +1,7 @@
 function S3BucketAccountSnapShot() {
   return (
     <>
-      <div className="s3-header-detail bg-light  mb-3 p-3">
+      <div className="s3-header-detail bg-light  mb-3 p-3 content-center">
         <div className="bucket-header">
           <strong>Account snapshot</strong>
           <p className="text-sm ">

@@ -4,7 +4,8 @@ const baseUrl = process.env.S3_ENDPOINT
   : 'http://localhost:5556';
 
 const ApiUrls = {
-  FetchBuckets: baseUrl + '/s3/list-buckets/',
+  fetchBuckets: baseUrl + '/s3/list-buckets/',
+  createS3BucketApiUrl: baseUrl + '/s3/create-bucket/',
 };
 
 export default ApiUrls;
