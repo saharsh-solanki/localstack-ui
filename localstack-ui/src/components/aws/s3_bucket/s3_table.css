@@ -77,7 +77,7 @@ label {
   color: #333;
 }
 
-input[type="text"],
+input[type='text'],
 select {
   width: 100%;
   padding: 10px;
@@ -114,10 +114,9 @@ button.btn-secondary {
 }
 
 .link-icon::before {
-  content: "\25B6"; /* Right arrow character */
+  content: '\25B6'; /* Right arrow character */
   margin-left: 5px;
 }
-
 
 .button-container {
   display: flex;

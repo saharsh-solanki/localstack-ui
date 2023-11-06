@@ -21,9 +21,9 @@ const BucketVersioning = () => {
             restore every version of every object stored in your Amazon S3
             bucket. With versioning, you can easily recover from both unintended
             user actions and application failures.
-            <a className="blue-link" href="#">
+            <button className="blue-link" href="#">
               Learn More
-            </a>
+            </button>
             <span className="link-icon"></span>
           </p>
         </div>
@@ -58,9 +58,9 @@ const BucketForm = () => {
           <small className="small-text">
             Bucket name must be unique within the global namespace and follow
             the bucket naming rules.
-            <a className="blue-link" href="#">
+            <button className="blue-link" href="#">
               See rules for bucket naming
-            </a>
+            </button>
             <span className="link-icon"></span>
           </small>
         </div>

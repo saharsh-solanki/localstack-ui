@@ -50,7 +50,7 @@ function S3BucketListTable() {
         </thead>
         <tbody>
           {isLoading ? (
-            <tr >
+            <tr>
               <td>Loading</td>
             </tr>
           ) : (
