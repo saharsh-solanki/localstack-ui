@@ -1,4 +1,6 @@
 import './header.css';
+import amazonIcon from '../../assests/icons/amazonIcon.png';
+import iconSearch from '../../assests/icons/iconSearch.png';
 
 function Header() {
   return (
@@ -8,29 +10,26 @@ function Header() {
           <div id="nav-belt">
             <div className="nav-left">
               <div id="nav-logo">
-                <button>LOGO</button>
+                <img className='img-logo logo pl-1' src={amazonIcon}></img>
               </div>
             </div>
             <div className="nav-fill">
               <div id="nav-search">
                 <form id="nav-search-bar-form">
-                  <div className="nav-left">
-                    <button href="">ALL</button>
-                  </div>
-                  <div className="nav-fill">
-                    <input type="text" />
-                  </div>
+                <img src={iconSearch} className='logo' ></img>
+                    <input type="text" placeholder='Search' />
                   <div className="nav-right">
-                    <button type="submit">Search</button>
                   </div>
                 </form>
               </div>
             </div>
             <div className="nav-right">
-              <div id="nav-tools">
-                <button>Language</button>
-                <button>Log in</button>
-                <button>Cart</button>
+              <div id="nav-tools" className='text-align-center m-auto'>
+                <div className='text-white text-bold'>
+                  <a href='#'>
+                    saharsh.solanki@working.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>

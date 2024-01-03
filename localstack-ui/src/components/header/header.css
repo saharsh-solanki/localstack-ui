@@ -80,9 +80,6 @@ header {
 
 #nav-search-bar-form:focus-within {
   box-sizing: border-box;
-  border: 0.2rem solid var(--main-border);
-  margin: 0 -0.2rem 0 -0.2rem;
-  box-shadow: 0rem 0rem 0.3rem var(--main-border-shadow);
 }
 
 #nav-search-bar-form .nav-left {
@@ -117,13 +114,11 @@ header {
   border-right: 0.1rem solid var(--main-text);
 }
 
-#nav-search-bar-form .nav-fill input {
-  box-sizing: border-box;
-  flex: 1 1 auto;
-  padding: 0;
-  font-size: 1rem;
-  text-indent: 0.5rem;
-  border: 0;
+#nav-search-bar-form  input {
+  border: 1px solid white;
+  background-color: #131921;
+  border-radius: 5px;
+  color: white;
 }
 
 #nav-search-bar-form .nav-fill > input:focus {

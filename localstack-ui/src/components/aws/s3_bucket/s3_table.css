@@ -129,3 +129,12 @@ button.btn-secondary {
 .button-container button {
   margin-left: 10px; /* Add spacing between the buttons */
 }
+
+.btn-delete-bucket {
+  border: 1px solid #545b64 !important;
+  color: #545b64 !important;
+  border-radius: 0px !important;
+  margin-right: 10px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}

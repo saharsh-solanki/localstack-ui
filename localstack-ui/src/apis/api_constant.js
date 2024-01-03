@@ -6,6 +6,8 @@ const baseUrl = process.env.S3_ENDPOINT
 const ApiUrls = {
   fetchBuckets: baseUrl + '/s3/list-buckets/',
   createS3BucketApiUrl: baseUrl + '/s3/create-bucket/',
+  deleteS3BucketApiUrl: baseUrl + '/s3/delete-bucket/',
+  emptyS3BucketApiUrl: baseUrl + '/s3/empty-bucket/'
 };
 
 export default ApiUrls;

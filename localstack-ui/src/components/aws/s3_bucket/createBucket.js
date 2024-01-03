@@ -3,16 +3,30 @@ import './s3_table.css';
 import { createS3BucketApi } from '../../../apis/aws/s3/s3';
 import useLoading from '../../../hooks/useLoading';
 import showToast from '../../../utils/toast';
+import Header from '../../header/header';
 
-const Header = () => {
+const HeaderComp = () => {
   return (
     <>
-      <h2 className="mx-3 my-3"> Create bucket</h2>
+    <div className='d-flex align-items-center'>
+      <a className='nav-link' href='../../'>Go Back</a><h2 className="mx-3 my-3"> Create bucket</h2>
+      </div>
     </>
   );
 };
 
-const BucketVersioning = () => {
+const BucketVersioning = (props) => {
+  const { enableVersioning, setEnableVersioning } = props;
+
+  const handleChange = (e) => {
+    if (e.target.value === "enabled"){
+      setEnableVersioning(true);
+    }
+    else{
+      setEnableVersioning(false);
+    }
+  }
+
   return (
     <div className="container p-4 mb-4">
       <div className="section">
@@ -35,12 +49,12 @@ const BucketVersioning = () => {
           <label>Bucket Versioning:</label>
           <div>
             <label>
-              <input type="radio" name="bucketVersioning" value="enabled" />{' '}
+              <input type="radio" onChange={handleChange} name="bucketVersioning" value="enabled" checked={enableVersioning} />{' '}
               Enable
             </label>
             <br></br>
             <label>
-              <input type="radio" name="bucketVersioning" value="disabled" />{' '}
+              <input type="radio"  onChange={handleChange} name="bucketVersioning" value="disabled" checked={!enableVersioning} />{' '}
               Disable
             </label>
           </div>
@@ -99,13 +113,15 @@ const BucketForm = (props) => {
 
 function S3CreateBucket() {
   const [bucketName, setBucketName] = useState('');
+  const [enableVersioning, setEnableVersioning] = useState(false);
   const [,setIsLoading] = useLoading();
 
   const createBucketBtnClickHandler = async () => {
     try{
       setIsLoading(true);
       const payload = {
-        bucket_name:bucketName
+        bucket_name:bucketName,
+        enable_versioning:enableVersioning
       }
       const response = await createS3BucketApi(payload);
       console.log("response",response);
@@ -125,10 +141,11 @@ function S3CreateBucket() {
 
   return (
     <>
-      <div className="p-5">
-        <Header />
+    <Header ></Header>
+      <div className="px-5">
+        <HeaderComp />
         <BucketForm bucketName={bucketName} setBucketName={setBucketName} />
-        <BucketVersioning></BucketVersioning>
+        <BucketVersioning setEnableVersioning={setEnableVersioning} enableVersioning={enableVersioning}></BucketVersioning>
         <div className="button-container">
           <button className="btn btn-secondary">Cancel</button>
           <button

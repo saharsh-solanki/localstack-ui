@@ -43,6 +43,9 @@ services:
       - '5556:5556'
     depends_on: 
       - database
+    # Comment the below life if you don't want the live code updating functionality
+    volumes:
+      - ./localstack_backend:/app 
     networks:
       - network_all
 

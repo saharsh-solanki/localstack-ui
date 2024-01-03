@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { fetchS3BucketApi } from '../../../apis/aws/s3/s3';
+import { deleteS3BucketApi, emptyS3BucketApi, fetchS3BucketApi } from '../../../apis/aws/s3/s3';
 import './s3_table.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { RootModal } from '../../modal/mainModal';
 
 function S3BucketListTable() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [s3BucketData, setS3BucketData] = useState([]);
+  const [selectedBucketName, setSelectedBucketName] = useState('');
 
   useEffect(() => {
     fetchS3Bucekts();
@@ -21,13 +24,90 @@ function S3BucketListTable() {
     setIsLoading(false);
   };
 
+  const handleCurrentSelectedbucketChange = (event) => {
+    setSelectedBucketName(event.target.value);
+  };
+
+  const handleDeleteButtonClick = async () => {
+    /* Bucket name is mandator else it will throw error  
+    * Call delete api by passing bucket_name
+    * Refresh the bucket list
+    */
+    if (!selectedBucketName) {
+      toast.info('Please select a bucket');
+      return false;
+    }
+    setIsLoading(true);
+    const payload = { bucket_name: selectedBucketName };
+    const response = await deleteS3BucketApi(payload);
+    if (response?.status) {
+      setSelectedBucketName('');
+      toast.success('Bucket Deleted ');
+      await fetchS3Bucekts();
+    } else {
+      toast.error('Some error while deleting bucket ');
+      console.log('bucket deleting error response', response);
+    }
+    setIsLoading(false);
+  };
+
+  const handleEmptyBucketClick = async () => {
+    if (!selectedBucketName) {
+      toast.info('Please select a bucket');
+      return false;
+    }
+    const confirmed = window.confirm('Are you sure you want to empty the bucket?');
+    if (!confirmed) {
+      return;
+    }
+    setIsLoading(true);
+  
+    try {
+      const payload = { bucket_name: selectedBucketName };
+      const response = await emptyS3BucketApi(payload);
+  
+      if (response?.status) {
+        toast.success('Bucket Emptied');
+        await fetchS3Bucekts();
+      } else {
+        toast.error('Error emptying the bucket');
+        console.log('Bucket emptying error response', response);
+      }
+    } catch (error) {
+      toast.error('An error occurred while emptying the bucket');
+      console.error('Bucket emptying error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
+
   return (
+    <>
     <div className="main-table margin-right-10 my-4">
       <div className="s3-header-detail bg-light">
         <div className="bucket-header">
           <b>Buckets</b> ({s3BucketData?.length})
         </div>
         <div>
+          <button
+            onClick={() => {
+              handleEmptyBucketClick()
+            }}
+            className="btn btn-sm btn-delete-bucket"
+            disabled={!selectedBucketName}
+          >
+            Empty
+          </button>
+          <button
+            onClick={() => {
+              handleDeleteButtonClick();
+            }}
+            className="btn btn-sm btn-delete-bucket"
+            disabled={!selectedBucketName}
+          >
+            Delete
+          </button>
           <button
             onClick={() => {
               navigate('/create/s3/buckets');
@@ -51,7 +131,7 @@ function S3BucketListTable() {
         <tbody>
           {isLoading ? (
             <tr>
-              <td>Loading</td>
+              <td className='py-5 px-5' colSpan={5}>Loading buckets</td>
             </tr>
           ) : (
             s3BucketData.length > 0 &&
@@ -59,11 +139,20 @@ function S3BucketListTable() {
               return (
                 <tr key={'tr-' + index}>
                   <th scope="row">
-                    <input type="radio" key={'input-' + index}></input>
+                    <input
+                      onChange={handleCurrentSelectedbucketChange}
+                      type="radio"
+                      key={'input-' + index}
+                      value={bucket?.Name}
+                    ></input>
                   </th>
                   <td>{bucket.Name}</td>
                   <td>{bucket?.AwsRegion}</td>
-                  <td>{bucket?.Access}</td>
+                  <td>
+                    {bucket?.Access?.map((accessData) => {
+                      return accessData?.Permission;
+                    }).join(' , ')}
+                  </td>
                   <td>{bucket.CreationDate}</td>
                 </tr>
               );
@@ -72,6 +161,11 @@ function S3BucketListTable() {
         </tbody>
       </table>
     </div>
+
+    {/* <RootModal isOpen={true} onClose={()=>{}}>
+      Dummy Modal */}
+    {/* </RootModal> */}
+    </>
   );
 }
 
